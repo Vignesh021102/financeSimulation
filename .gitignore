@@ -1,4 +1,4 @@
-public/build/*
-public/node_modules/*
-admin/build/*
-admin/node_modules/*
+public/build/
+public/node_modules/
+admin/build/
+admin/node_modules/
