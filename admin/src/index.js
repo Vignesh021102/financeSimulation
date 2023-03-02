@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { HashRouter } from 'react-router-dom'
-import { BrowserRouter, Routes, Route ,useNavigate} from "react-router-dom";
+// import { HashRouter } from 'react-router-dom'
+// import { BrowserRouter, Routes, Route ,useNavigate} from "react-router-dom";
+import SessionsComp from './sessions';
 
 class IndexComp extends React.Component{
   constructor(props){
@@ -20,7 +21,15 @@ class IndexComp extends React.Component{
     console.log(this.state);
   return(
     <section>
-      <h1>welcome admin</h1>
+      <nav>
+        <div>
+          <button>edit</button>
+          <button>seesions</button>
+        </div>
+      </nav>
+      <div id='main'>
+        <SessionsComp />
+      </div>
     </section>
   )
   }
@@ -30,8 +39,4 @@ class IndexComp extends React.Component{
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <div>
-    <IndexComp/>
-  </div>
-);
+root.render(<IndexComp/>);
