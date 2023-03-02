@@ -5,6 +5,7 @@ class SessionsComp extends React.Component{
         super(props)
         this.state = {
             sessionsList:[{id:1,name:'SSN clg | it dept',groupsCount:50,playersCount:600},{id:2,name:'XXX clg | XXX dept',groupsCount:12,playersCount:120},{id:123,name:'YYY clg | YYY dept',groupsCount:100,playersCount:1000}],
+            groupList:[{id:1,}],
             createSessionMenu:'none',
             groupPage:'none',
             newSessionName:''
@@ -101,7 +102,9 @@ class SessionsComp extends React.Component{
                     </div>
                 </div>
                 <div id="groupPage" style={{display:this.state.groupPage}} >
+                    <div id='groupsList'>
 
+                    </div>
                 </div>
 
             </div>
