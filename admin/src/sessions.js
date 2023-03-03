@@ -5,7 +5,7 @@ class SessionsComp extends React.Component{
         super(props)
         this.state = {
             sessionsList:[{id:1,name:'SSN clg | it dept',groupsCount:50,playersCount:600},{id:2,name:'XXX clg | XXX dept',groupsCount:12,playersCount:120},{id:123,name:'YYY clg | YYY dept',groupsCount:100,playersCount:1000}],
-            groupList:[{id:1,}],
+            groupList:[{id:1,playersCount:10},{id:2,playersCount:15},{id:3,playersCount:18},{id:4,playersCount:8},{id:5,playersCount:5}],
             createSessionMenu:'none',
             groupPage:'none',
             newSessionName:''
@@ -14,7 +14,8 @@ class SessionsComp extends React.Component{
         this.changeInVal = this.changeInVal.bind(this)
         this.createSession = this.createSession.bind(this)
         this.toggleCreateSessionMenu = this.toggleCreateSessionMenu.bind(this)
-        this.groupPage = this.groupPage.bind(this)
+        this.toggleGroupPage = this.toggleGroupPage.bind(this)
+        this.displayGroups = this.displayGroups.bind(this)
     }
     changeInVal(e){
         let obj = {}
@@ -26,7 +27,8 @@ class SessionsComp extends React.Component{
         if(list.length > 0){
             let card,nameDiv,coinIcon,name,infoDiv,groupBox,playerBox,groupLabel,playerLabel,groupInfo,playerInfo,excelDownload,downloadIcon
             for(let session of list){
-                card = document.createElement('div')
+                card = document.createElement('button')
+                card.onclick = this.toggleGroupPage
                 nameDiv = document.createElement('div')
                 name = document.createElement('p')
                 coinIcon = document.createElement('i')
@@ -62,6 +64,29 @@ class SessionsComp extends React.Component{
          container.appendChild(p)       
         }
     }
+    displayGroups(list){
+        let container = document.querySelector('#groupsList')
+        container.innerHTML = ''
+        if(list.length > 0){
+            let card,groupBox,groupInfo,linkIcon,playerBox
+            for (let group of list){
+                card = document.createElement('div')
+                groupBox = document.createElement('div')
+                groupInfo = document.createElement('p')
+                linkIcon = document.createElement('img')
+                groupBox.appendChild(groupInfo)
+                groupBox.appendChild(linkIcon)
+
+                playerBox = document.createElement('p')
+
+                groupInfo.innerText = `Group ${group.id}`
+                playerBox.innerText = `players ${group.playersCount}`
+                card.appendChild(groupBox)
+                card.appendChild(playerBox)
+                container.appendChild(card)
+            }
+        }
+    }
     toggleCreateSessionMenu(){
         let temp = 'none'
         if(this.state.createSessionMenu == 'none'){
@@ -81,6 +106,7 @@ class SessionsComp extends React.Component{
     }
     componentDidMount(){
        this.displaySessions(this.state.sessionsList)
+       this.displayGroups(this.state.groupList)
     }
     render(){
         return(
@@ -102,6 +128,33 @@ class SessionsComp extends React.Component{
                     </div>
                 </div>
                 <div id="groupPage" style={{display:this.state.groupPage}} >
+                    <div>
+                        <button onClick={this.toggleGroupPage} >back</button>
+                        <div>
+                            <input type="text" placeholder="Group Number" />
+                        </div>
+                        <button>create group</button>
+                    </div>
+                    <div>
+                        <div>
+                            <div>
+                                <p>2100</p>
+                            </div>
+                            <div>
+                                <p>open phase</p>
+                            </div>
+                            <div>
+                                <p>5:00</p>
+                            </div>
+                            <div>
+                                <button>LL</button>
+                                <button>L</button>
+                                <button>R</button>
+                                <button>RR</button>
+                            </div>
+                        </div>
+                        <button id="gameStatus" >pause</button>
+                    </div>
                     <div id='groupsList'>
 
                     </div>
